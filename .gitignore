@@ -1,0 +1,23 @@
+# 의존성 — package-lock.json 만 올리면 누구나 npm install 로 복원한다 (203MB)
+node_modules/
+
+# wrangler 로컬 상태 / 빌드 산출물
+.wrangler/
+dist/
+
+# 비밀값
+.dev.vars
+.env
+.env.*
+
+# 점검 스크립트가 남기는 스크린샷
+shots/
+
+# 로컬 도구 상태
+.bkit/
+.claude/settings.local.json
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+*.log

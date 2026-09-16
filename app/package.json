@@ -1,0 +1,20 @@
+{
+  "name": "polyarena",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "실시간 멀티플레이어 탑다운 탱크 아레나 (Cloudflare Workers + Durable Objects)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "check": "node scripts/check.js",
+    "e2e": "node scripts/e2e.js",
+    "perf": "node scripts/perf.js",
+    "drive": "node scripts/drive.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0",
+    "wrangler": "^4.42.0"
+  }
+}

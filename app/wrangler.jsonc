@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "polyarena",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-01",
+
+  // public/ 을 정적 에셋으로 서빙한다.
+  // 에셋과 매칭되지 않는 경로(/ws 등)만 Worker 로 넘어온다.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+
+  "durable_objects": {
+    "bindings": [
+      { "name": "GAME_ROOM", "class_name": "GameRoom" }
+    ]
+  },
+
+  // new_sqlite_classes 를 써야 무료 플랜에서도 Durable Objects 가 동작한다.
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["GameRoom"] }
+  ],
+
+  "observability": {
+    "enabled": true
+  }
+}

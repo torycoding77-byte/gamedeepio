@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#191c21">
+<title>POLYARENA — 실시간 탱크 아레나</title>
+<meta name="description" content="도형을 부수고 성장해 28종 탱크로 승급하는 실시간 멀티플레이어 아레나 슈터.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23191c21'/><circle cx='16' cy='16' r='7' fill='%233fd2c7'/><rect x='16' y='13' width='13' height='6' fill='%23a3a8b0'/></svg>">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<canvas id="game"></canvas>
+
+<!-- ── 게임 중 HUD ────────────────────────────────────────── -->
+<div id="hud" hidden>
+
+  <div id="leaderboard">
+    <h3>순위</h3>
+    <ol id="lb-list"></ol>
+  </div>
+
+  <div id="classpick" hidden>
+    <h3>승급 가능</h3>
+    <div id="classpick-opts"></div>
+  </div>
+
+  <div id="stats">
+    <div id="stats-title">스탯 포인트 <b id="points">0</b></div>
+    <div id="stats-rows"></div>
+  </div>
+
+  <div id="bottom">
+    <div class="bar" id="score-bar">
+      <div class="fill" id="score-fill"></div>
+      <span class="label" id="score-label">점수 0</span>
+    </div>
+    <div class="bar" id="level-bar">
+      <div class="fill" id="level-fill"></div>
+      <span class="label" id="level-label">Lv 1 · 기본</span>
+    </div>
+    <div id="myname"></div>
+  </div>
+
+  <div id="netinfo"><span id="ping">--</span>ms</div>
+
+  <!-- 모바일 듀얼 스틱 -->
+  <div id="touch" hidden>
+    <div class="stick" id="stick-move"><div class="knob"></div></div>
+    <div class="stick" id="stick-aim"><div class="knob"></div></div>
+  </div>
+</div>
+
+<!-- ── 시작 화면 ──────────────────────────────────────────── -->
+<div id="menu" class="overlay">
+  <div class="panel">
+    <h1>POLY<span>ARENA</span></h1>
+    <p class="tag">도형을 부수고, 성장하고, 살아남아라.</p>
+
+    <div class="row">
+      <input id="nick" maxlength="16" placeholder="닉네임" autocomplete="off" spellcheck="false">
+      <button id="play" disabled>연결 중…</button>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <div class="help">
+      <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 이동</div>
+      <div><kbd>마우스</kbd> 조준 · <kbd>클릭</kbd>/<kbd>Space</kbd> 사격</div>
+      <div><kbd>1</kbd>~<kbd>8</kbd> 스탯 투자 · <kbd>E</kbd> 자동사격 · <kbd>C</kbd> 자동회전</div>
+      <div class="dim">Lv 15 / 30 / 45 에서 탱크를 승급할 수 있다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 사망 화면 ──────────────────────────────────────────── -->
+<div id="deathscreen" class="overlay" hidden>
+  <div class="panel">
+    <h2>격추당했다</h2>
+    <div class="death-grid">
+      <div><span>점수</span><b id="d-score">0</b></div>
+      <div><span>레벨</span><b id="d-level">1</b></div>
+      <div><span>생존</span><b id="d-time">0초</b></div>
+    </div>
+    <p class="killer">처치: <b id="d-killer">-</b></p>
+    <button id="respawn">다시 하기</button>
+  </div>
+</div>
+
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
