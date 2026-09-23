@@ -364,6 +364,15 @@ const refilled = [...dw.bullets.values()].filter((b) => b.isDrone).length;
 check(`파괴되면 다시 보충 (${afterLoss} → ${refilled}기)`, refilled > afterLoss);
 check('최대치를 넘지 않음', refilled <= cmdr.droneMax, `${refilled}/${cmdr.droneMax}`);
 
+// ── 자동사격(E)은 드론 지휘를 가로채면 안 된다 ──
+cmdr.setInput(IN.AUTOFIRE, 0, 900, 4);
+check('자동사격 중에도 드론은 자율 교전 (마우스에 묶이지 않음)',
+  cmdr.droneCommand === null, '드론이 커서에 고정된다');
+cmdr.setInput(IN.FIRE, 0, 900, 5);
+check('마우스를 실제로 누르면 지휘 명령이 생긴다', cmdr.droneCommand !== null);
+cmdr.setInput(IN.FIRE | IN.AUTOFIRE, 0, 900, 6);
+check('자동사격 + 마우스 동시에도 지휘 가능', cmdr.droneCommand !== null);
+
 // ── 주인이 죽으면 드론도 사라진다 ──
 dw.damage(cmdr, cmdr.health + 1, 0);
 for (let i = 0; i < 5; i++) dw.step(DT);

@@ -253,6 +253,7 @@ function frame(now) {
   interpolate(now);
   renderer.render(state);
   ui.setPing(net.ping);
+  ui.setToggles(input.autoFire, input.autoSpin);
 }
 
 addEventListener('resize', () => renderer.resize());

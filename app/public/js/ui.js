@@ -28,6 +28,8 @@ export class UI {
       levelLabel: $('level-label'),
       myname: $('myname'),
       ping: $('ping'),
+      tAutofire: $('t-autofire'),
+      tAutospin: $('t-autospin'),
       touch: $('touch'),
       dScore: $('d-score'),
       dLevel: $('d-level'),
@@ -83,6 +85,12 @@ export class UI {
 
   showTouchControls(on) {
     this.el.touch.hidden = !on;
+  }
+
+  /** 자동 사격·자동 회전 표시 */
+  setToggles(autoFire, autoSpin) {
+    if (this.el.tAutofire.hidden === autoFire) this.el.tAutofire.hidden = !autoFire;
+    if (this.el.tAutospin.hidden === autoSpin) this.el.tAutospin.hidden = !autoSpin;
   }
 
   setPing(ms) {

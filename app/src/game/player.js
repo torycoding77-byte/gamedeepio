@@ -158,7 +158,9 @@ export class Player {
    * 마우스를 누르고 있으면 그 지점, 아니면 null (= 알아서 싸워라).
    */
   get droneCommand() {
-    if (!(this.flags & IN.FIRE) && !(this.flags & IN.AUTOFIRE)) return null;
+    // 자동사격(E)은 "계속 쏴라" 지, "드론을 커서에 묶어둬라" 가 아니다.
+    // 마우스를 실제로 누르고 있을 때만 지휘한다 — 놓으면 드론이 알아서 싸운다.
+    if (!(this.flags & IN.FIRE)) return null;
     const d = this.aimDist || 0;
     if (d < 40) return null;
     return {
