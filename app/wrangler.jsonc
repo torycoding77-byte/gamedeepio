@@ -4,6 +4,9 @@
   "main": "src/index.js",
   "compatibility_date": "2025-09-01",
 
+  // <이름>.<서브도메인>.workers.dev 로 공개한다
+  "workers_dev": true,
+
   // public/ 을 정적 에셋으로 서빙한다.
   // 에셋과 매칭되지 않는 경로(/ws 등)만 Worker 로 넘어온다.
   "assets": {
